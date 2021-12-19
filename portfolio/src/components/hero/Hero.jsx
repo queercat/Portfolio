@@ -1,3 +1,5 @@
+import "./hero.css"
+
 import {Text, Heading} from "@chakra-ui/react"
 import {useRef} from "react";
 
@@ -28,4 +30,19 @@ function Hero(props) {
     );
   }
 
-export {Hero}
+  function HeroBlink(props) {
+    const textItems = props.subtext.map((value) => 
+        <Text fontSize="4xl" key={value}>
+            > {value}
+        </Text>
+    );
+    
+    return (
+      <div className='hero'>
+        <Heading fontSize="6xl">{props.text}<a class="blink">_</a></Heading>
+        {textItems}
+      </div>
+    );
+  }
+
+export {Hero, HeroBlink}
