@@ -76,10 +76,10 @@ function loadComputer() {
 window.addEventListener( 'resize', onWindowResize, false);
 
 function onWindowResize() {
-    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.aspect = (window.innerWidth / 2) / (window.innerHeight / 4);
     camera.updateProjectionMatrix();
     renderer.setPixelRatio(window.devicePixelRatio);
-    renderer.setSize(window.innerWidth / 4, window.innerHeight / 4);
+    renderer.setSize(window.innerWidth / 2, window.innerHeight / 4);
 }
 
 function Animate() {
