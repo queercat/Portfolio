@@ -65,10 +65,9 @@ function instanceTemplateScene(props, templateRenderer, templateCamera, template
 }
 
 function instanceVoxelTemplate(props, templateRenderer) {
-    console.log(props)
-
     var templateCamera = new THREE.PerspectiveCamera(75, props.width / props.height);
     var templateScene = new THREE.Scene();
+    var templateControls = new OrbitControls(templateCamera, templateRenderer.domElement);
 
     instanceTemplateScene(props, templateRenderer, templateCamera, templateScene);
 
@@ -84,8 +83,6 @@ function instanceVoxelTemplate(props, templateRenderer) {
         });
 
         templateOBJLoader.setMaterials(mtl);
-
-        console.log(url + props.baseURL + ".obj");
         
         templateOBJLoader.load(url + props.baseURL + ".obj", obj => {
             if (props.rot !== undefined) {
@@ -93,8 +90,6 @@ function instanceVoxelTemplate(props, templateRenderer) {
                 obj.rotateY((props.rot[1] / 180) * 3.14);
                 obj.rotateZ((props.rot[2] / 180) * 3.14);
             }
-
-            console.log(props.trans);
 
             if (props.trans !== undefined) {
                 obj.translateX((props.trans[0]));
@@ -104,12 +99,12 @@ function instanceVoxelTemplate(props, templateRenderer) {
             
             obj.children[0].map = texture;
             templateScene.add(obj);
-            templateAnimate(templateRenderer, templateCamera, templateScene, obj, props); // Refactor to blob / obj.
+            templateAnimate(templateRenderer, templateCamera, templateScene, obj, templateControls, props); // Refactor to blob / obj.
         }); 
     });
 }
 
-function templateAnimate(templateRenderer, templateCamera, templateScene, obj, props) {
+function templateAnimate(templateRenderer, templateCamera, templateScene, obj, templateControls, props) {
     var tempAnimationObj = {
         main: function() {
             tempAnimationObj.update();
@@ -120,7 +115,9 @@ function templateAnimate(templateRenderer, templateCamera, templateScene, obj, p
         update: function() {
             this.obj.rotateX(props.animRot[0]);
             this.obj.rotateY(props.animRot[1]);
-            this.obj.rotateZ(props.animRot[2]);            
+            this.obj.rotateZ(props.animRot[2]);
+
+            this.controls.update();
         },
 
         draw: function() {
@@ -138,6 +135,7 @@ function templateAnimate(templateRenderer, templateCamera, templateScene, obj, p
     tempAnimationObj.scene = templateScene;
     tempAnimationObj.obj = obj;
     tempAnimationObj.props = props;
+    tempAnimationObj.controls = templateControls;
 
     tempAnimationObj.main();
 }
