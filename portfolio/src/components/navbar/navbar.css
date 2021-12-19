@@ -1,0 +1,11 @@
+.navbar {
+    display: flex;
+    height: 70px;
+    justify-content: center;
+    align-items: center;
+    background-color: wheat;
+}
+
+.navitem {
+    margin-left: 1.2rem;
+}

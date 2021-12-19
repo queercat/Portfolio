@@ -1,0 +1,8 @@
+.profile {
+    background-color: darkgray;
+    min-height: 60vh;
+    transition: all .2s ease-in-out;
+    
+    display: flex;
+    justify-content: center;
+}
