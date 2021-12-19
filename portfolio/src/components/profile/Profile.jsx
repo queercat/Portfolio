@@ -1,13 +1,24 @@
 import './profile.css'
-import PFP from '../../images/PFP.png'
+import {PageContainer} from '../pagecontainer/PageContainer';
+import {Hero} from '../hero/Hero';
+import {Voxel}  from '../voxel/Voxel'
+
+import {Button, Divider, HStack} from '@chakra-ui/react';
 
 function Profile() {
-    return <div className='profile section'>
-        <div className='name'>
-            <h1>Test</h1>
-            <h1>Test</h1>
-        </div>
-    </div>
+    return (<div>
+        <PageContainer style={{backgroundColor: "white"}}>
+            <Voxel></Voxel>
+            <Hero text="May Tusek" subtext={["Full Stack Developer", "Software Engineer"]}/>
+            <Divider/>
+            <HStack>
+                <Button>About Me</Button>
+                <Button>Projects</Button>
+                <Button>Hire Me</Button>
+            </HStack>
+        </PageContainer>
+      </div>
+    )
 }
 
 export {Profile}

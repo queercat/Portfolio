@@ -15,7 +15,9 @@ import {useRef} from "react";
 
 function Hero(props) {
     const textItems = props.subtext.map((value) => 
-      <Text fontSize="4xl" key={value}>{value}</Text>
+        <Text fontSize="4xl" key={value}>
+            > {value}
+        </Text>
     );
     
     return (

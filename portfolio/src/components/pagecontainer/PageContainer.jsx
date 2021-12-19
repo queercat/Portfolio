@@ -14,4 +14,14 @@ function PageContainer(props) {
     )
 }
 
-export {PageContainer}
+function PageContainerNonC(props) {
+    return (
+        <div style={props.style}>
+        <Container h="100vh">
+            {props.children}
+        </Container>
+        </div>
+        )
+}
+
+export {PageContainer, PageContainerNonC}
