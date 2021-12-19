@@ -9,7 +9,7 @@ function About() {
         <PageContainerNonC style={{backgroundColor: "#FFFFFF"}}>            
             <Center height="100vh">
                 <Grid templateColumns='repeat(2, 1fr)' gap='6'>
-                    <Card text="Hello World" description="Lorem ipsum dolor sit amet"><VoxelTemplate color="#FFFFFF" rot={[45, 90, 0]} width="500" height="200" baseURL="/models/keyboard"/></Card>
+                    <Card text="Music" description="is a huge part of my life"><VoxelTemplate color="#FFFFFF" rot={[45, 90, 0]} trans={[0, 0, 0]} animRot={[0.01, 0.01, 0.01]} width=".25" height=".25" baseURL="/models/keyboard"/></Card>
                     <Card text="Hello World" description="Lorem ipsum dolor sit amet"></Card>
                     <Card text="Hello World" description="Lorem ipsum dolor sit amet"></Card>
                     <Card text="Hello World" description="Lorem ipsum dolor sit amet"></Card>

@@ -49,6 +49,10 @@ class VoxelTemplate extends React.Component {
     }
 }
 
+function onWindowResize(templateRenderer, templateCamera, templateScene, props) {
+    //
+}
+
 function instanceTemplateScene(props, templateRenderer, templateCamera, templateScene) {
     templateRenderer.setSize(props.width, props.height);
     templateCamera.position.setZ(2);
@@ -56,6 +60,8 @@ function instanceTemplateScene(props, templateRenderer, templateCamera, template
 
     var templateAmbientLight = new THREE.AmbientLight(0xFFFFFF, 1);
     templateScene.add(templateAmbientLight);
+
+    window.addEventListener('resize', onWindowResize(templateRenderer, templateCamera, templateScene, props), false);
 }
 
 function instanceVoxelTemplate(props, templateRenderer) {
@@ -82,9 +88,19 @@ function instanceVoxelTemplate(props, templateRenderer) {
         console.log(url + props.baseURL + ".obj");
         
         templateOBJLoader.load(url + props.baseURL + ".obj", obj => {
-            obj.rotateX((props.rot[0] / 180) * 3.14);
-            obj.rotateY((props.rot[1] / 180) * 3.14);
-            obj.rotateZ((props.rot[2] / 180) * 3.14);
+            if (props.rot !== undefined) {
+                obj.rotateX((props.rot[0] / 180) * 3.14);
+                obj.rotateY((props.rot[1] / 180) * 3.14);
+                obj.rotateZ((props.rot[2] / 180) * 3.14);
+            }
+
+            console.log(props.trans);
+
+            if (props.trans !== undefined) {
+                obj.translateX((props.trans[0]));
+                obj.translateY((props.trans[1]));
+                obj.translateZ((props.trans[2]));
+            }
             
             obj.children[0].map = texture;
             templateScene.add(obj);
@@ -102,10 +118,17 @@ function templateAnimate(templateRenderer, templateCamera, templateScene, obj, p
         },
 
         update: function() {
-            this.obj.rotateY(.01);
+            this.obj.rotateX(props.animRot[0]);
+            this.obj.rotateY(props.animRot[1]);
+            this.obj.rotateZ(props.animRot[2]);            
         },
 
         draw: function() {
+            this.camera.aspect = (this.props.width * window.innerWidth) / (this.props.height * window.innerHeight);
+            this.camera.updateProjectionMatrix();
+
+            this.renderer.setSize(this.props.width * window.innerWidth, window.innerHeight * this.props.height);
+            this.renderer.setPixelRatio(window.devicePixelRatio);
             this.renderer.render(this.scene, this.camera);
         }
     }
@@ -122,8 +145,6 @@ function templateAnimate(templateRenderer, templateCamera, templateScene, obj, p
 function createScene() {
     renderer.setSize(200, 200);
     camera.position.setZ(2);
-
-    onWindowResize();
 
     const AmbientLight = new THREE.AmbientLight(0xFFFFFF);
     scene.add(AmbientLight);
@@ -160,15 +181,6 @@ function loadComputer() {
             Animate();
         });
     });
-}
-
-window.addEventListener( 'resize', onWindowResize, false);
-
-function onWindowResize() {
-    camera.aspect = (window.innerWidth / 2) / (window.innerHeight / 4);
-    camera.updateProjectionMatrix();
-    renderer.setPixelRatio(window.devicePixelRatio);
-    renderer.setSize(window.innerWidth / 2, window.innerHeight / 4);
 }
 
 function Animate() {
