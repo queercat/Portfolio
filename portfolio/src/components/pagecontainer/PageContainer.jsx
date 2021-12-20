@@ -3,7 +3,7 @@ import {Container, Heading, Grid, GridItem, Center, VStack, Text, chakra, propNa
 function PageContainer(props) {
     return (
     <div style={props.style}>
-    <Container id={props.id} h="100vh">
+    <Container cid={props.id} h="100vh">
         <Center h="100vh">
             <VStack>
                 {props.children}
@@ -17,9 +17,9 @@ function PageContainer(props) {
 function PageContainerNonC(props) {
     return (
         <div style={props.style}>
-        <Container id={props.id} h="100vh">
-            {props.children}
-        </Container>
+            <div id={props.id} style={{height: "100vh"}}>
+                {props.children}
+            </div>
         </div>
         )
 }

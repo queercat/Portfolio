@@ -6,13 +6,43 @@
     padding-right: 5px;
     padding-bottom: 8px;
 
-    min-width: 48vw;
-    min-height: 45vh;
+    min-width: clamp(200px, 80vw, 1200px);
+    min-height: clamp(120px, 10vh, 150px);
 
     overflow: hidden;
+}
+
+.iconCard {
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    
+    padding-right: 5px;
+    padding-bottom: 8px;
+
+    min-width: clamp(120px, 10vh, 150px);
+    min-height: clamp(120px, 10vh, 150px);
+
+    position: relative;
+
+    left: -4vw;
+
+    overflow: hidden;
+}
+
+.iconCard:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    transform: scale(1.02);
 }
 
 .card:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
     transform: scale(1.02);
+}
+
+.afterCard {
+    display: flex;
+    justify-content: right;
+    margin-right: 15px;
+    margin-bottom: 10px;
 }

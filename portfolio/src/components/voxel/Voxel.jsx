@@ -85,6 +85,7 @@ function instanceVoxelTemplate(props, templateRenderer) {
         templateOBJLoader.setMaterials(mtl);
         
         templateOBJLoader.load(url + props.baseURL + ".obj", obj => {
+            console.log(url + props.baseURL + ".obj")
             if (props.rot !== undefined) {
                 obj.rotateX((props.rot[0] / 180) * 3.14);
                 obj.rotateY((props.rot[1] / 180) * 3.14);

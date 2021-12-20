@@ -18,8 +18,7 @@ function Profile() {
             <HeroBlink text="May Tusek" subtext={["Full Stack Developer", "Software Engineer"]}></HeroBlink>
             <Divider/>
             <HStack>
-                <Button onClick={() => ScrollToID("about")}>About Me</Button>
-                <Button onClick={() => ScrollToID("projects")}>Projects</Button>
+                <Button onClick={() => ScrollToID("about")}>Projects</Button>
                 <Button onClick={() => ScrollToID("hire me")}>Hire Me</Button>
             </HStack>
         </PageContainer>

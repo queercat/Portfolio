@@ -39,7 +39,7 @@ function Hero(props) {
     
     return (
       <div className='hero'>
-        <Heading fontSize="6xl">{props.text}<a class="blink">_</a></Heading>
+        <Heading fontSize="6xl">{props.text}<a className="blink">_</a></Heading>
         {textItems}
       </div>
     );
